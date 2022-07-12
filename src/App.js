@@ -7,24 +7,26 @@ import { FavoritesList} from './components/FavoritesList'
 function App() {
   const [favoriteBooks, setFavoriteBooks] = useState([])
 
+  console.log({favoriteBooks})
+
   // setFavoriteBooks((prevFavoriteBooks) => [...preFavoriteBooks, newBook])
-console.log({favoriteBooks})
+
+  // setFavoriteBooks((currentFavoriteBooks) => )
 
   return (
     <>
       <h1>Book list</h1>
-    <div className='app-container'>
-      {books.map((book) => {
-        return (
-          <Card 
-            key={book.title} 
-            book={book}
-            handleAddFavorite={setFavoriteBooks}
-          />)
-      })}
-    </div>
-      <FavoritesList favoriteBooks={favoriteBooks}/>
-    
+      <div className='app-container'>
+        {books.map((book) => {
+          return (
+            <Card 
+              key={book.title} 
+              book={book}
+              updateFavoriteBooks={setFavoriteBooks}
+            />)
+        })}
+      </div>
+      <FavoritesList favoriteBooks={favoriteBooks} updateFavoriteBooks={setFavoriteBooks}/>
     </>
   );
 }

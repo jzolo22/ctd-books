@@ -1,10 +1,9 @@
-import React from "react";
-import { useEffect } from "react";
-import { useRef } from "react";
-import "../App.css";
+import React from 'react';
+import '../App.css';
 
 export const Card = (props) => {
   const handleAddToFavorites = (book) => {
+    props.fetchNewCocktail();
     // same as setFavoriteBooks from App.js
     props.updateFavoriteBooks((prevFavoriteBooks) => [
       ...prevFavoriteBooks,
@@ -31,11 +30,17 @@ export const Card = (props) => {
       />
       <p>{props.book.title}</p>
       {props.favorite ? (
-        <button onClick={() => handleRemoveFromFavorites(props.book)}>
+        <button
+          className="unfavorite-button"
+          onClick={() => handleRemoveFromFavorites(props.book)}
+        >
           Remove from favorites
         </button>
       ) : (
-        <button onClick={() => handleAddToFavorites(props.book)}>
+        <button
+          className="favorite-button"
+          onClick={() => handleAddToFavorites(props.book)}
+        >
           Add to favorites
         </button>
       )}

@@ -1,5 +1,5 @@
-import React from "react";
-import { Card } from "./Card";
+import React from 'react';
+import { Card } from './Card';
 
 export const FavoritesList = (props) => {
   // props.favoriteBooks --> array of books to display
@@ -7,7 +7,7 @@ export const FavoritesList = (props) => {
   return (
     <div>
       <h1>Favorite Books</h1>
-      <ul>
+      <ul className="favorites">
         {props.favoriteBooks.map((book) => {
           return (
             <Card

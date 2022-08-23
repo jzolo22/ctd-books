@@ -9,7 +9,6 @@ export const Card = (props) => {
       ...prevFavoriteBooks,
       book,
     ]);
-    // functional setState
   };
 
   const handleRemoveFromFavorites = (book) => {

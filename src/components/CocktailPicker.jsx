@@ -1,35 +1,20 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useFetchNewCocktail } from '../services/fetchCocktail';
 
 export const CocktailPicker = (props) => {
-  /**
-   * User has clicked to select a cocktail
-   */
-  //   const handleCocktailPicker = () => {
-  //     // make a fetch request to some api
-  //     setIsLoading(true);
-  //     try {
-  //       fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
-  //         .then((response) => response.json())
-  //         .then((data) => {
-  //           const randomCocktail = {
-  //             imageUrl: data.drinks[0].strDrinkThumb,
-  //             title: data.drinks[0].strDrink,
-  //           };
-  //           // set our state with a cocktail
-  //           setCocktail(randomCocktail);
-  //           setIsLoading(false);
-  //         });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+  const { cocktail, isLoadingCocktail, fetchNewCocktail } =
+    useFetchNewCocktail();
+
+  useEffect(() => {
+    fetchNewCocktail();
+  }, []);
 
   return (
     <>
       <h3>What cocktail should I drink while I read?</h3>
       {/* {props.isLoading ? null : (
-        <button className="button-54" onClick={handleCocktailPicker}>
+       
+        ton className="button-54" onClick={handleCocktailPicker}>
           Click here to have a cocktail selected
         </button>
       )} */}
@@ -41,6 +26,15 @@ export const CocktailPicker = (props) => {
           <img
             src={props.cocktail.imageUrl}
             alt={`random cocktail named ${props.cocktail.title}`}
+            style={{ maxWidth: '200px' }}
+          />
+        </div>
+      ) : cocktail ? (
+        <div>
+          <h4>{cocktail.title}</h4>
+          <img
+            src={cocktail.imageUrl}
+            alt={`random cocktail named ${cocktail.title}`}
             style={{ maxWidth: '200px' }}
           />
         </div>

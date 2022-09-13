@@ -9,23 +9,22 @@ import { useFetchNewCocktail } from './services/fetchCocktail';
 
 function App() {
   const [favoriteBooks, setFavoriteBooks] = useState([]);
-  const [search, setSearch] = useState('');
   const [filteredBooks, setFilteredBooks] = useState(books);
 
   const { cocktail, isLoadingCocktail, fetchNewCocktail } =
     useFetchNewCocktail();
 
-  useEffect(() => {
-    // look through our filtered books, find the relevant ones, and then setFilteredBooks to the newly relevant ones
-    const newlyFilteredBooks = books.filter((book) => {
-      const lowerCaseTitle = book.title.toLowerCase();
-      const lowerCaseSearch = search.toLowerCase();
-      return lowerCaseTitle.includes(lowerCaseSearch);
-    });
+  // useEffect(() => {
+  //   // look through our filtered books, find the relevant ones, and then setFilteredBooks to the newly relevant ones
+  //   const newlyFilteredBooks = books.filter((book) => {
+  //     const lowerCaseTitle = book.title.toLowerCase();
+  //     const lowerCaseSearch = search.toLowerCase();
+  //     return lowerCaseTitle.includes(lowerCaseSearch);
+  //   });
 
-    // and then setFilteredBooks to the newly relevant ones
-    setFilteredBooks(newlyFilteredBooks);
-  }, [search]);
+  //   // and then setFilteredBooks to the newly relevant ones
+  //   setFilteredBooks(newlyFilteredBooks);
+  // }, [search]);
 
   return (
     <>

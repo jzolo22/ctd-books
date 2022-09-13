@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export const useFetchNewCocktail = () => {
   const [isLoadingCocktail, setIsLoadingCocktail] = useState(false);
@@ -22,10 +22,6 @@ export const useFetchNewCocktail = () => {
       console.log(error);
     }
   };
-
-  //   useEffect(() => {
-  //     fetchNewCocktail();
-  //   }, []);
 
   return {
     cocktail,

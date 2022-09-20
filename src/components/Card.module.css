@@ -1,0 +1,6 @@
+.card {
+    border: 1px solid pink;
+    max-width: fit-content;
+    padding: 8px;
+    text-align: center
+  }

@@ -31,6 +31,28 @@ export const books = [
     title: 'The Divine Comedy',
     year: 1315,
   },
+  {
+    author: 'Samuel Beckett',
+    country: 'Republic of Ireland',
+    imageLink:
+      'https://images-na.ssl-images-amazon.com/images/I/51DPzloNDnL._SX327_BO1,204,203,200_.jpg',
+    language: 'French, English',
+    link: 'https://en.wikipedia.org/wiki/Molloy_(novel)\n',
+    pages: 256,
+    title: 'Molloy, Malone Dies, The Unnamable, the trilogy',
+    year: 1952,
+  },
+  {
+    author: 'Albert Camus',
+    country: 'Algeria, French Empire',
+    imageLink:
+      'https://target.scene7.com/is/image/Target/GUEST_4a77c994-0912-4031-abdb-37446c8df1db?wid=488&hei=488&fmt=pjpeg',
+    language: 'French',
+    link: 'https://en.wikipedia.org/wiki/The_Stranger_(novel)\n',
+    pages: 185,
+    title: 'The Stranger',
+    year: 1942,
+  },
 ];
 
 export const getBooksPromise = () =>

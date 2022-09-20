@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import styles from './Card.module.css';
 
 export const Card = (props) => {
   const handleAddToFavorites = (book) => {
@@ -21,7 +22,7 @@ export const Card = (props) => {
   };
 
   return (
-    <div className="card">
+    <div className={styles.card}>
       <img
         className="image"
         alt={`book cover for ${props.book.title}`}

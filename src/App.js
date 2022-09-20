@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { books } from './books';
 import { Card } from './components/Card';
 import { FavoritesList } from './components/FavoritesList';
@@ -21,7 +21,7 @@ function App() {
   const { cocktail, isLoadingCocktail, fetchNewCocktail } =
     useFetchNewCocktail();
 
-  const handleInputChange = (event) => {
+  const handleInputChange = useCallback((event) => {
     setSearchTerm(event.target.value);
     const updatedFilteredBooks = filteredBooks.filter((book) => {
       const lowerCaseBookTitle = book.title.toLowerCase();
@@ -30,7 +30,12 @@ function App() {
     });
     // set the new filtered books to be the actual filtered books
     setFilteredBooks(updatedFilteredBooks);
-  };
+  }, []);
+
+  const searchLetterCount = useMemo(() => {
+    // use useMemo if there's some complicated calculation
+    return searchTerm.length;
+  }, [searchTerm]);
 
   return (
     <>
@@ -55,6 +60,7 @@ function App() {
               book={book}
               updateFavoriteBooks={setFavoriteBooks}
               fetchNewCocktail={fetchNewCocktail}
+              handleInputChange={handleInputChange}
             />
           );
         })}

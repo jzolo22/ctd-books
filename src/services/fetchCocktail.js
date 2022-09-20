@@ -29,3 +29,8 @@ export const useFetchNewCocktail = () => {
     fetchNewCocktail,
   };
 };
+
+// React provides
+// useMemo --> a hook that "memo"-izes a particular value
+// useCallback --> a hook that "memo"-izes a particular function
+// memo --> not a hook, higher order component that "memo"-izes a component

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { useFetchNewCocktail } from '../services/fetchCocktail';
 
-export const CocktailPicker = (props) => {
+const CocktailPicker = (props) => {
   const { cocktail, isLoadingCocktail, fetchNewCocktail } =
     useFetchNewCocktail();
 
@@ -42,3 +42,5 @@ export const CocktailPicker = (props) => {
     </>
   );
 };
+
+export default memo(CocktailPicker);

@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CocktailPicker } from './components/CocktailPicker';
+import { GroceryList } from './components/GroceryList';
 import { ClassComponentExample } from './components/ClassComponentExample';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,6 +16,7 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="randomcocktail" element={<CocktailPicker />} />
         <Route path="classComponent" element={<ClassComponentExample />} />
+        <Route path="grocery" element={<GroceryList />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

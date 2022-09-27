@@ -1,5 +1,5 @@
 import { filterArrayByTerm } from './filterArrayByTerm';
-import { books } from './books';
+import { books } from '../books';
 
 describe('filterArrayByTerm', () => {
   const searchTerm = 'a';

@@ -4,6 +4,7 @@ const groceryAirtableUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_
 
 export const GroceryList = () => {
   const [groceryList, setGroceryList] = useState([]);
+
   useEffect(() => {
     fetch(groceryAirtableUrl, {
       headers: {
@@ -14,17 +15,48 @@ export const GroceryList = () => {
       .then((data) => setGroceryList(data.records));
   }, []);
 
-  const handleChecked = () => {
-    // to be continued!!....
-    fetch(groceryAirtableUrl, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      //   figure out what goes in the body!
-      body: JSON.stringify(),
-    });
+  const handleChecked = (event) => {
+    const id = event.target.id;
+    const newPurchased = event.target.checked;
+
+    const body = {
+      records: [
+        {
+          id,
+          fields: {
+            Purchased: newPurchased,
+          },
+        },
+      ],
+    };
+
+    try {
+      fetch(groceryAirtableUrl, {
+        method: 'PATCH', // We should use PATCH not POST because this is an update for specific values
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+      // make the update in state here (after the PATCH request was successful) so we aren't reflecting changes that haven't happened
+      const currentGroceryIndex = groceryList.findIndex(
+        (item) => item.id === id
+      );
+      const updatedGroceryList = [...groceryList];
+      updatedGroceryList[currentGroceryIndex] = {
+        ...updatedGroceryList[currentGroceryIndex],
+        fields: {
+          ...updatedGroceryList[currentGroceryIndex].fields,
+          Purchased: newPurchased,
+        },
+      };
+
+      setGroceryList(updatedGroceryList);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -37,10 +69,10 @@ export const GroceryList = () => {
               type="checkbox"
               id={grocery.id}
               name={grocery.fields.Item}
-              value={grocery.fields.Purchased}
               checked={grocery.fields.Purchased}
-            ></input>
-            <label for={grocery.fields.Item}>{grocery.fields.Item}</label>
+              onChange={handleChecked}
+            />
+            <label htmlFor={grocery.fields.Item}>{grocery.fields.Item}</label>
             {/* // <li key={grocery.id}>{grocery.fields.Item}</li> */}
           </li>
         ))}
